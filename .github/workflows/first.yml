@@ -35,7 +35,7 @@ jobs:
             path: dist/
 
         - name: " install vercel"
-          run: npm install --globalvercel
+          run: npm install --global vercel
 
         - name: deploy
           run: vercel --prod --yes --token="{{secrets.TOKEN}}"
