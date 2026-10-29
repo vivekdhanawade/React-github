@@ -37,5 +37,5 @@ jobs:
         - name: " install vercel"
           run: npm install --global vercel
 
-        - name: deploy
-          run: vercel --prod --yes --token="${{ secrets.TOKEN }}"
+        - name: Deploy to Vercel
+          run: vercel --name=react-github --prod --yes --token="${{ secrets.TOKEN }}"
