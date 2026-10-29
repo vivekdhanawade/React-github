@@ -1,5 +1,10 @@
 name: First workflow
-on: push
+on: 
+  push:
+  pull_request:
+    branches:
+      - main
+
 
 jobs:
     First-workflow:
@@ -15,5 +20,22 @@ jobs:
             cache: npm
         - name: install dependency
           run: npm ci
+
+        - name: lint
+          run : npm run lint
+
+        - name: test
+          run: npm run test
         - name: build
           run: npm run build
+        - name: Upload build artifact
+          uses: actions/upload-artifact@v4
+          with:
+            name: react-build
+            path: dist/
+
+        - name: " install vercel"
+          run: npm install --globalvercel
+
+        - name: deploy
+          run: vercel --prod --yes --token="{{secrets.TOKEN}}"
