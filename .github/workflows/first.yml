@@ -24,6 +24,11 @@ jobs:
         - name: lint
           run : npm run lint
 
+          env:
+            VERCEL_ORG_ID: "${{SECRETS.VERCEL_ORG_ID}}"
+            VERCEL_PROJECT_ID: "${{SECRETS.VERCEL_PROJECT_ID}}"
+
+
         # - name: test
         #   run: npm run test
         - name: build
@@ -38,4 +43,4 @@ jobs:
           run: npm install --global vercel
 
         - name: Deploy to Vercel
-          run: vercel --name=react-github --prod --yes --token="${{ secrets.TOKEN }}"
+          run: vercel deploy dist --prod --yes --token="${{ secrets.TOKEN }}"
